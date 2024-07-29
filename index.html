@@ -16,6 +16,16 @@
       button:active {
         background-color: rgb(0, 217, 255);
       }
+      #visitCountBox {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 255, 0.5);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -128,11 +138,12 @@
         >Please Subscribe to My Youtube Channel as a Help</a
       >
     </div>
-    <hr>
+    <hr />
     <div class="container mt-5">
       <h1 class="text-center">DGSM GPA Calculator</h1>
       <h2 class="text-center">
-        2<sup>nd</sup> Semester Results/Expected results - Please select your grades
+        2<sup>nd</sup> Semester Results/Expected results - Please select your
+        grades
       </h2>
       <form>
         <div class="form-group">
@@ -205,7 +216,8 @@
         </div>
         <div class="form-group">
           <label for="IT2106"
-            >Grade you got or expected for : IT2106-Programming II</label
+            >Grade you got or expected for : IT2106-Computer Systems
+            Architecture</label
           >
           <select class="form-control" id="IT2106">
             <option value="4">A+</option>
@@ -222,12 +234,12 @@
             <option value="0">E</option>
           </select>
         </div>
-        <h2 id="GPA" class="text-center"></h2>
+        <h2 id="GPA2" class="text-center"></h2>
         <div class="text-center">
           <button
             type="button"
             class="btn btn-primary"
-            onclick="Calculator_GPA()"
+            onclick="Calculator_GPA2()"
           >
             Calculate GPA for 2nd Sem
           </button>
@@ -250,28 +262,58 @@
         >Please Subscribe to My Youtube Channel as a Help</a
       >
     </div>
-
-    <div class="text-center mt-3">
-      <p id="visitCount"></p>
-    </div>
+    <div id="visitCountBox">Page Visits: 0</div>
 
     <script>
+      // Get the visit count from localStorage
+      let visitCount = localStorage.getItem("visitCount");
+
+      // If visit count is not available, initialize it
+      if (visitCount === null) {
+        visitCount = 0;
+      } else {
+        // Convert the visit count to a number
+        visitCount = parseInt(visitCount, 10);
+      }
+
+      // Increment the visit count
+      visitCount++;
+
+      // Update the visit count in localStorage
+      localStorage.setItem("visitCount", visitCount);
+
+      // Display the visit count
+      document.getElementById(
+        "visitCountBox"
+      ).textContent = `Page Visits: ${visitCount}`;
+
       function Calculator_GPA() {
-        // ... Your GPA calculation code here ...
+        var grades = [
+          parseFloat(document.getElementById("EN1106").value),
+          parseFloat(document.getElementById("IT1206").value),
+          parseFloat(document.getElementById("IT1406").value),
+          parseFloat(document.getElementById("IT1106").value),
+          parseFloat(document.getElementById("IT1306").value),
+        ];
+        var total = grades.reduce((acc, grade) => acc + grade, 0);
+        var gpa = total / grades.length;
+        document.getElementById("GPA").innerHTML =
+          "Your GPA for 1st Sem: " + gpa.toFixed(2);
       }
 
-      function updateVisitCount() {
-        const countKey = 'visitCount';
-        let visitCount = localStorage.getItem(countKey);
-        if (visitCount === null) {
-          visitCount = 0;
-        }
-        visitCount++;
-        localStorage.setItem(countKey, visitCount);
-        document.getElementById('visitCount').innerText = 'Page Visits: ' + visitCount;
+      function Calculator_GPA2() {
+        var grades = [
+          parseFloat(document.getElementById("EN2106").value),
+          parseFloat(document.getElementById("IT2306").value),
+          parseFloat(document.getElementById("IT2206").value),
+          parseFloat(document.getElementById("IT2406").value),
+          parseFloat(document.getElementById("IT2106").value),
+        ];
+        var total = grades.reduce((acc, grade) => acc + grade, 0);
+        var gpa = total / grades.length;
+        document.getElementById("GPA2").innerHTML =
+          "Your GPA for 2nd Sem: " + gpa.toFixed(2);
       }
-
-      document.addEventListener('DOMContentLoaded', updateVisitCount);
     </script>
   </body>
 </html>
