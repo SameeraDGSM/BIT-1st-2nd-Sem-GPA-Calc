@@ -16,16 +16,6 @@
       button:active {
         background-color: rgb(0, 217, 255);
       }
-      #visitCountBox {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background-color: rgba(0, 0, 255, 0.5);
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        font-weight: bold;
-      }
     </style>
   </head>
   <body>
@@ -135,15 +125,13 @@
         href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
         target="_blank"
         class="btn btn-danger"
-        >Please Subscribe to My Youtube Channel as a Help</a
-      >
+        >Please Subscribe to My Youtube Channel as a Help</a>
     </div>
-    <hr />
+    <hr>
     <div class="container mt-5">
       <h1 class="text-center">DGSM GPA Calculator</h1>
       <h2 class="text-center">
-        2<sup>nd</sup> Semester Results/Expected results - Please select your
-        grades
+        2<sup>nd</sup> Semester Results/Expected results - Please select your grades
       </h2>
       <form>
         <div class="form-group">
@@ -216,8 +204,8 @@
         </div>
         <div class="form-group">
           <label for="IT2106"
-            >Grade you got or expected for : IT2106-Computer Systems
-            Architecture</label
+            >Grade you got or expected for : IT2106-Mathematics for
+            Computing</label
           >
           <select class="form-control" id="IT2106">
             <option value="4">A+</option>
@@ -241,7 +229,7 @@
             class="btn btn-primary"
             onclick="Calculator_GPA2()"
           >
-            Calculate GPA for 2nd Sem
+            Calculate GPA for 2nd sem
           </button>
           <button
             type="button"
@@ -253,7 +241,6 @@
         </div>
       </form>
     </div>
-
     <div class="text-center mt-3">
       <a
         href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
@@ -262,58 +249,83 @@
         >Please Subscribe to My Youtube Channel as a Help</a
       >
     </div>
-    <div id="visitCountBox">Page Visits: 0</div>
-
     <script>
-      // Get the visit count from localStorage
-      let visitCount = localStorage.getItem("visitCount");
-
-      // If visit count is not available, initialize it
-      if (visitCount === null) {
-        visitCount = 0;
-      } else {
-        // Convert the visit count to a number
-        visitCount = parseInt(visitCount, 10);
-      }
-
-      // Increment the visit count
-      visitCount++;
-
-      // Update the visit count in localStorage
-      localStorage.setItem("visitCount", visitCount);
-
-      // Display the visit count
-      document.getElementById(
-        "visitCountBox"
-      ).textContent = `Page Visits: ${visitCount}`;
-
       function Calculator_GPA() {
-        var grades = [
-          parseFloat(document.getElementById("EN1106").value),
-          parseFloat(document.getElementById("IT1206").value),
-          parseFloat(document.getElementById("IT1406").value),
-          parseFloat(document.getElementById("IT1106").value),
-          parseFloat(document.getElementById("IT1306").value),
-        ];
-        var total = grades.reduce((acc, grade) => acc + grade, 0);
-        var gpa = total / grades.length;
-        document.getElementById("GPA").innerHTML =
-          "Your GPA for 1st Sem: " + gpa.toFixed(2);
-      }
-
-      function Calculator_GPA2() {
-        var grades = [
-          parseFloat(document.getElementById("EN2106").value),
-          parseFloat(document.getElementById("IT2306").value),
-          parseFloat(document.getElementById("IT2206").value),
-          parseFloat(document.getElementById("IT2406").value),
-          parseFloat(document.getElementById("IT2106").value),
-        ];
-        var total = grades.reduce((acc, grade) => acc + grade, 0);
-        var gpa = total / grades.length;
-        document.getElementById("GPA2").innerHTML =
-          "Your GPA for 2nd Sem: " + gpa.toFixed(2);
+        const GPA =
+          (parseFloat(IT1206.value) * 4 +
+            parseFloat(IT1406.value) * 4 +
+            parseFloat(IT1106.value) * 4 +
+            parseFloat(IT1306.value) * 3) /
+          (4 + 4 + 4 + 3);
+        document.getElementById("GPA").textContent =
+          "Your GPA is: " + GPA.toFixed(2);
       }
     </script>
+    <script>
+      function Calculator_GPA2() {
+        const GPA2 =
+          (parseFloat(IT2306.value) * 4 +
+            parseFloat(IT2206.value) * 4 +
+            parseFloat(IT2406.value) * 4 +
+            parseFloat(IT2106.value) * 3) /
+          (4 + 4 + 4 + 3);
+        document.getElementById("GPA2").textContent =
+          "Your GPA is: " + GPA2.toFixed(2);
+      }
+    </script>
+
+<hr>
+
+<h2 id="GPAavg" class="text-center"></h2>
+<div class="text-center">
+  <button
+    type="button"
+    class="btn btn-primary"
+    onclick="Calculator_GPAavg()"
+  >
+    Calculate Average GPA for 1st and 2nd Sem
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    onclick="location.reload()"
+  >
+    Refresh
+  </button>
+</div>
+</form>
+</div>
+<div class="text-center mt-3">
+<a
+href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
+target="_blank"
+class="btn btn-danger"
+>Please Subscribe to My Youtube Channel as a Help</a
+>
+</div>
+<script>
+function Calculator_GPAavg() {
+const GPAavg =
+  (parseFloat(IT1206.value) * 4 +
+    parseFloat(IT1406.value) * 4 +
+    parseFloat(IT1106.value) * 4 +
+    parseFloat(IT1306.value) * 3 +
+    parseFloat(IT2306.value) * 4 +
+    parseFloat(IT2206.value) * 4 +
+    parseFloat(IT2406.value) * 4 +
+    parseFloat(IT2106.value) * 3 )/
+  (4 + 4 + 4 + 3+4 + 4 + 4 + 3);
+document.getElementById("GPAavg").textContent =
+  "Your Average GPA is: " + GPAavg.toFixed(2);
+}
+</script>
+
+
+<hr>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
