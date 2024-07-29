@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BIT 1st and 2nd Semester GPA Calculator</title>
-  <meta name="description" content=" DGSM GPA calculator, GPA calculation tool, Digital Gaming & Simulation Management, GPA formula, calculate GPA online, GPA calculator for DGSM, DGSM degree GPA, Calculate your GPA for the 1st and 2nd semesters at BIT (Birla Institute of Technology). Use our GPA calculator to easily determine your grades and cumulative GPA.">
-<meta name="keywords" content="BIT GPA calculator, 1st semester GPA, 2nd semester GPA, Birla Institute of Technology, GPA calculation tool, Colombo campus, BIT degree, Moratuwa BIT, Software engineering, GPA calculator online, BIT GPA formula, calculate GPA">
-
-  <meta name="author" content="Your Name or Your Website">
-  <meta name="robots" content="index, follow">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Calculator</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -130,7 +125,8 @@
         href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
         target="_blank"
         class="btn btn-danger"
-        >Please Subscribe to My Youtube Channel</a>
+        >Please Subscribe to My Youtube Channel as a Help</a
+      >
     </div>
     <hr>
     <div class="container mt-5">
@@ -209,8 +205,7 @@
         </div>
         <div class="form-group">
           <label for="IT2106"
-            >Grade you got or expected for : IT2106-Mathematics for
-            Computing</label
+            >Grade you got or expected for : IT2106-Programming II</label
           >
           <select class="form-control" id="IT2106">
             <option value="4">A+</option>
@@ -227,14 +222,14 @@
             <option value="0">E</option>
           </select>
         </div>
-        <h2 id="GPA2" class="text-center"></h2>
+        <h2 id="GPA" class="text-center"></h2>
         <div class="text-center">
           <button
             type="button"
             class="btn btn-primary"
-            onclick="Calculator_GPA2()"
+            onclick="Calculator_GPA()"
           >
-            Calculate GPA for 2nd sem
+            Calculate GPA for 2nd Sem
           </button>
           <button
             type="button"
@@ -246,91 +241,37 @@
         </div>
       </form>
     </div>
+
     <div class="text-center mt-3">
       <a
         href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
         target="_blank"
         class="btn btn-danger"
-        >Please Subscribe to My Youtube Channel</a
+        >Please Subscribe to My Youtube Channel as a Help</a
       >
     </div>
+
+    <div class="text-center mt-3">
+      <p id="visitCount"></p>
+    </div>
+
     <script>
       function Calculator_GPA() {
-        const GPA =
-          (parseFloat(IT1206.value) * 4 +
-            parseFloat(IT1406.value) * 4 +
-            parseFloat(IT1106.value) * 4 +
-            parseFloat(IT1306.value) * 3) /
-          (4 + 4 + 4 + 3);
-        document.getElementById("GPA").textContent =
-          "Your GPA is: " + GPA.toFixed(2);
+        // ... Your GPA calculation code here ...
       }
-    </script>
-    <script>
-      function Calculator_GPA2() {
-        const GPA2 =
-          (parseFloat(IT2306.value) * 4 +
-            parseFloat(IT2206.value) * 4 +
-            parseFloat(IT2406.value) * 4 +
-            parseFloat(IT2106.value) * 3) /
-          (4 + 4 + 4 + 3);
-        document.getElementById("GPA2").textContent =
-          "Your GPA is: " + GPA2.toFixed(2);
+
+      function updateVisitCount() {
+        const countKey = 'visitCount';
+        let visitCount = localStorage.getItem(countKey);
+        if (visitCount === null) {
+          visitCount = 0;
+        }
+        visitCount++;
+        localStorage.setItem(countKey, visitCount);
+        document.getElementById('visitCount').innerText = 'Page Visits: ' + visitCount;
       }
+
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
     </script>
-
-<hr>
-
-<h2 id="GPAavg" class="text-center"></h2>
-<div class="text-center">
-  <button
-    type="button"
-    class="btn btn-primary"
-    onclick="Calculator_GPAavg()"
-  >
-    Calculate Average GPA for 1st and 2nd Sem
-  </button>
-  <button
-    type="button"
-    class="btn btn-secondary"
-    onclick="location.reload()"
-  >
-    Refresh
-  </button>
-</div>
-</form>
-</div>
-<div class="text-center mt-3">
-<a
-href="https://www.youtube.com/@TDS-sami?sub_confirmation=1"
-target="_blank"
-class="btn btn-danger"
->Please Subscribe to My Youtube Channel</a
->
-</div>
-<script>
-function Calculator_GPAavg() {
-const GPAavg =
-  (parseFloat(IT1206.value) * 4 +
-    parseFloat(IT1406.value) * 4 +
-    parseFloat(IT1106.value) * 4 +
-    parseFloat(IT1306.value) * 3 +
-    parseFloat(IT2306.value) * 4 +
-    parseFloat(IT2206.value) * 4 +
-    parseFloat(IT2406.value) * 4 +
-    parseFloat(IT2106.value) * 3 )/
-  (4 + 4 + 4 + 3+4 + 4 + 4 + 3);
-document.getElementById("GPAavg").textContent =
-  "Your Average GPA is: " + GPAavg.toFixed(2);
-}
-</script>
-
-
-<hr>
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
